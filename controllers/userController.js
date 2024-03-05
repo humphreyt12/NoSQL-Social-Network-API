@@ -2,6 +2,7 @@ const Thought = require('../models/Thought');
 const User = require('../models/User');
 
 module.exports = {
+  //get users
     async getUsers(req, res) {
       try {
         const users = await User.find();
@@ -10,6 +11,7 @@ module.exports = {
         res.status(500).json(err)
       }
     },
+  //get a single user by id
     async getSingleUser(req, res) {
       try {
         const user = await User.findOne({ _id: req.params.userId });
@@ -69,7 +71,7 @@ module.exports = {
       },
    // add a friend
     addFriend(req, res) {
-          // if we already have the friend ID in params, is this necessary??
+          
       User.findOne({ _id: req.params.friendId })
           .select('-__v')
           .then((user) => {
@@ -88,14 +90,13 @@ module.exports = {
           .catch((err) => res.status(500).json(err));
       },
    // delete friend
-    deleteFriend(req, res) {
-      // same comment as above
+    removeFriend(req, res) {
+    
       User.findOne({ _id: req.params.friendId })
           .select('-__v')
           .then((user) => {
             return User.findOneAndUpdate (
                 { _id: req.params.userId}, 
-                // missing a nested object for the user to remove??
                 {$pull: {
                   friends: user._id
               }},
