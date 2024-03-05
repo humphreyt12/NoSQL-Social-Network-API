@@ -12,33 +12,6 @@ connection.once('open', async () => {
         await connection.dropCollection('social');
     }
 
-//  // Empty arrays for randomly generated users
-//  const users = [];
-
-//  for (let i = 0; i < 10; i++) {
-//     const users = getRandomUser();
-//     const newUser = {
-//       username: Math.floor(Math.random() * 10 + 1),
-//       email: Math.random().toString(36).substring(2)+'@'+(Math.random() * 0xffff).toString(36)
-//     };
-//     users.push(newUser);
-//   }
-
-//   const thoughts = [];
-
-//   for (let i = 0; i < 10; i++) {
-//     const thoughts = getRandomThoughts();
-//     const newThought = {
-//         thoughtText:
-//         username: Math.floor(Math.random() * 10 + 1),
-//         userId:
-//     };
-//     thoughts.push(newThought);
-//   }
-
-  // Wait for the users to be inserted into the database
-  await Social.collection.insertMany(users);
-
   await Thought.deleteMany({});
   await User.deleteMany({});
 

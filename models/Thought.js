@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 //not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model
-const reactionSchema = new mongoose.Schema({
+const reactionSchema = new Schema({
             reactionId: {
                 type: Schema.Types.ObjectId,
                 default: () => new Types.ObjectId(),
@@ -19,7 +19,6 @@ const reactionSchema = new mongoose.Schema({
             createdAt: {
                 type: Date,
                 default: Date.now,
-                get: (date) => formatDate(date)
             }, 
     });
 
@@ -35,7 +34,6 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now(),
-            get: (date) => formateDate(date)
         },
         username: {
             type: String,
@@ -62,5 +60,4 @@ thoughtSchema.virtual('reactionCount')
 // Initialize our Thought model
 const Thought = model('thought', thoughtSchema);
 
-console.log(formatDate("2022-05-24T01:31:56.774Z"))
 module.exports = Thought;
