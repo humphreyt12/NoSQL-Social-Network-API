@@ -83,13 +83,13 @@ module.exports = {
         {$addToSet: {friends: req.params.friendId }},
         { new: true} 
       );
-      if (!user) {
-        return res.status(404).json({ message: 'No user with that ID' });
-      }
-      res.json(user);
-     } catch (err) {
-      res.status(500).json(err);
-     }    
+    if (!user) {
+      return res.status(404).json({ message: 'No user with that ID' });
+    }
+    res.json(user);
+    } catch (err) {
+    res.status(500).json(err);
+    }    
   },
    // delete friend and update user's friend list
     removeFriend(req, res) {
