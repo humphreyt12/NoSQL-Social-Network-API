@@ -2,7 +2,7 @@ const Thought = require('../models/Thought');
 const User = require('../models/User');
 
 module.exports = {
-  //get users
+  //get all users
     async getUsers(req, res) {
       try {
         const users = await User.find();
@@ -46,10 +46,9 @@ module.exports = {
           }, 
           { new: true }, 
         );
-        if (!user) {
-          res.status(404).json({ message: 'No user found with this id!' });
-        }
-  
+      if (!user) {
+        res.status(404).json({ message: 'No user found with this id!' });
+      }
         res.json(user);
       } catch (err) {
         res.status(500).json(err);
@@ -103,7 +102,7 @@ module.exports = {
       }
       res.json(user);
     } catch(err) {
-    res.status(500).json(err);
+      res.status(500).json(err);
     }       
   },
 };
