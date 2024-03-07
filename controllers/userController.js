@@ -38,12 +38,6 @@ module.exports = {
       try {
         const user = await  User.findOneAndUpdate(
           { _id: req.params.userId }, 
-          { $set: 
-            {
-            username: req.body.username,
-            email: req.body.email
-            } 
-          }, 
           { new: true }, 
         );
       if (!user) {
