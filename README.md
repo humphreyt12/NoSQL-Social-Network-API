@@ -26,7 +26,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Video
 
-A link of a demonstration video will be added soon
+[Click link to view a demonstration of the API routes](https://vimeo.com/920350286/b2724a6f8a?share=copy)
 
 ## Installation
 Be sure to have MongoDB installed on your machine. You’ll use Express.js for routing, a MongoDB database, and the Mongoose ODM. Run the following code to install the required packages: 
