@@ -63,7 +63,7 @@ module.exports = {
       if (!user) {
         return res.status(404).json({ message: 'No user exits with that ID' });
       }
-      const thought = await Thought.deleteMany( { _id:{ $in: dbUserData.thoughts } });
+      const thought = await Thought.deleteMany( { _id:{ $in: user.thoughts } });
       if (!thoughts) {
         return res.status(404).json({ message: 'No thoughts for that user' });
       }
