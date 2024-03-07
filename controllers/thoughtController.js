@@ -8,7 +8,7 @@ module.exports = {
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-//get thoughts by id
+//get a single thought by id
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
@@ -20,7 +20,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-//create a thought
+//create a new thought
   createThought(req, res) {
     Thought.create({
         thoughtText: req.body.thoughtText,
@@ -41,7 +41,7 @@ module.exports = {
         res.status(500).json(err);
   })
 },
-//update thought
+//update a thought
   updateThought(req, res) {
       Thought.findOneAndUpdate(
           { _id: req.params.thoughtId }, 

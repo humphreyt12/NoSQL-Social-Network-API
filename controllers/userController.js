@@ -92,23 +92,19 @@ module.exports = {
     }    
   },
    // delete friend and update user's friend list
-    removeFriend(req, res) {
-    
-      User.findOne({ _id: req.params.friendId })
-          .select('-__v')
-          .then((user) => {
-            return User.findOneAndUpdate (
-                { _id: req.params.userId}, 
-                {$pull: {
-                  friends: user._id
-              }},
-              { new: true} 
-            );
-        }).then((user) => 
-            !user
-              ? res.status(404).json({ message: 'No user with that ID' })
-              : res.json(user)
-          )
-          .catch((err) => res.status(500).json(err));
-    }
+    async removeFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+      { _id: req.params.userId}, 
+      {$pull: {friends: req.params.friendId }},
+      { new: true} 
+      );
+      if (!user) {
+        return res.status(404).json({ message: 'No user with that ID' });
+      }
+      res.json(user);
+    } catch(err) {
+    res.status(500).json(err);
+    }       
+  },
 };
